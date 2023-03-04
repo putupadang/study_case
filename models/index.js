@@ -1,3 +1,4 @@
 import Comments from "./comment";
+import Users from "./user";
 
-export { Comments };
+export { Comments, Users };
