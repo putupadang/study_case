@@ -1,23 +1,8 @@
 import Comments from "./comment";
-import Users from "./user";
 import Student from "./student";
-import Class from "./class";
+import Class from "./classcategory";
 import StudentSubject from "./studentsubject";
 import Subject from "./subject";
-
-//user has many comments
-Users.hasMany(Comments, {
-  sourceKey: "id",
-  foreignKey: "userId",
-  as: "comments",
-});
-
-//comment belongs to user
-Comments.belongsTo(Users, {
-  sourceKey: "id",
-  foreignKey: "userId",
-  as: "user",
-});
 
 //student belongs to class
 Student.belongsTo(Class, {
@@ -61,4 +46,4 @@ StudentSubject.belongsTo(Subject, {
   as: "subject",
 });
 
-export { Comments, Users, Student, Class, StudentSubject, Subject };
+export { Comments, Student, Class, StudentSubject, Subject };
