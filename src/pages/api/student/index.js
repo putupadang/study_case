@@ -1,10 +1,23 @@
 import { Student } from "models";
+import { Op } from "sequelize";
 
 async function GET(req, res) {
-  // const { id } = req.query;
+  const { name, address } = req.query;
 
-  //get all
-  const students = await Student.findAll();
+  const students = await Student.findAll({
+    where: {
+      ...(name && {
+        name: {
+          [Op.like]: `%${name}%`,
+        },
+      }),
+      ...(address && {
+        address: {
+          [Op.like]: `%${address}%`,
+        },
+      }),
+    },
+  });
 
   res.status(200).json({
     status: "success",

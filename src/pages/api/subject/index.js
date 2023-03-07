@@ -1,17 +1,22 @@
-import { Comments } from "models";
+import { Subject } from "models";
+import { Op } from "sequelize";
 
 async function GET(req, res) {
-  // const { id } = req.query;
+  const { subjectName } = req.query;
 
-  //get all
-  const comments = await Comments.findOne({
+  const subjects = await Subject.findAll({
     where: {
-      id: 1,
+      ...(subjectName && {
+        subjectName: {
+          [Op.like]: `%${subjectName}%`,
+        },
+      }),
     },
   });
+
   res.status(200).json({
     status: "success",
-    data: comments,
+    data: subjects,
   });
 }
 

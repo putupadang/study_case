@@ -1,22 +1,23 @@
 import sequelize from "../config";
 import { DataTypes, Model } from "sequelize";
 
-class Comments extends Model {}
+class Users extends Model {}
 
-Comments.init(
+Users.init(
   {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true,
       primaryKey: true,
     },
-    userId: DataTypes.INTEGER,
-    text: DataTypes.STRING,
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
+    email: DataTypes.STRING,
   },
   {
     sequelize,
-    modelName: "comments",
+    modelName: "users",
   }
 );
 
-export default Comments;
+export default Users;

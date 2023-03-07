@@ -1,4 +1,3 @@
-import Comments from "./comment";
 import Student from "./student";
 import Class from "./classcategory";
 import StudentSubject from "./studentsubject";
@@ -46,4 +45,4 @@ StudentSubject.belongsTo(Subject, {
   as: "subject",
 });
 
-export { Comments, Student, Class, StudentSubject, Subject };
+export { Student, Class, StudentSubject, Subject };
