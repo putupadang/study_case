@@ -1,21 +1,15 @@
 import { Student, StudentSubject, Subject, Class } from "models";
-import { Op } from "sequelize";
 
 async function GET(req, res) {
-  const { name, address } = req.query;
+  const { student_id } = req.query;
+  if (!student_id) {
+    res.status(400).json({ message: "student_id is required" });
+    return;
+  }
 
   const students = await Student.findAll({
     where: {
-      ...(name && {
-        name: {
-          [Op.like]: `%${name}%`,
-        },
-      }),
-      ...(address && {
-        address: {
-          [Op.like]: `%${address}%`,
-        },
-      }),
+      id: student_id,
     },
     include: [
       {
