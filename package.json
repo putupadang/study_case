@@ -23,7 +23,7 @@
     "react-redux": "^7.2.6",
     "react-toastify": "^9.1.1",
     "sequelize": "^6.29.0",
-    "zustand": "^4.3.5"
+    "zustand": "^4.3.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",
