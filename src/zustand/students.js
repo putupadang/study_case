@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 const useStudents = create((set) => ({
-  studentList: [],
-  setStudentList: (value) => set({ studentList: value }),
+  studentDetail: null,
+  setStudentDetail: (value) => set({ studentDetail: value }),
 }));
 
 export default useStudents;

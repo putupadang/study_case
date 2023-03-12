@@ -21,6 +21,14 @@ const Sidebar = () => {
               <p>Students</p>
             </div>
           </div>
+          <div className="w-full px-5">
+            <div
+              onClick={() => route.push("/classes")}
+              className="py-2 px-3 my-3 cursor-pointer items-center rounded-md bg-slate-100 hover:bg-gray-200"
+            >
+              <p>Class</p>
+            </div>
+          </div>
         </div>
       )}
     </>

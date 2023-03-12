@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import StudentDetail from "src/components/student/detail";
 import TableStudent from "src/components/tables/tableStudent";
 import { fetcher } from "src/helper/utils";
-import useStudents from "src/zustand/students";
 
 const Students = () => {
-  const setStudentList = useStudents((state) => state.setStudentList);
+  const [studentList, setStudentList] = useState([]);
 
   const fetchStudents = async () => {
     const result = await fetcher("get", "/student");
@@ -21,11 +21,9 @@ const Students = () => {
     <>
       <div className="w-full">
         <p className="text-2xl">Student Page</p>
+        <StudentDetail />
         <div className="mt-10">
-          {/* <div className="w-full flex justify-end">
-            <button className="px-7 py-2 bg-slate-500 cursor-pointer text-white hover:bg-slate-600 rounded-md">Student</button>
-          </div> */}
-          <TableStudent />
+          <TableStudent studentList={studentList} />
         </div>
       </div>
     </>
