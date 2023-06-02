@@ -1,15 +1,36 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "koding_akademi",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "ngeranjiing",
+    "password": "zkBe73OEphTG",
+    "database": "neondb",
+    "host": "ep-soft-butterfly-470126.ap-southeast-1.aws.neon.tech",
+    "port": "5432",
+    "dialect": "postgres",
+    "ssl": true,
+    "dialectOptions": {
+      "ssl": {
+        "require": true
+      }
+    }
+  },
+  "postgresneondb": {
+    "username": "ngeranjiing",
+    "password": "zkBe73OEphTG",
+    "database": "neondb",
+    "host": "ep-soft-butterfly-470126.ap-southeast-1.aws.neon.tech",
+    "port": "5432",
+    "dialect": "postgres",
+    "ssl": true,
+    "dialectOptions": {
+      "ssl": {
+        "require": true
+      }
+    }
   },
   "test": {
     "username": "root",
     "password": null,
-    "database": "database_test",
+    "database": "koding_akademi",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

@@ -12,7 +12,7 @@ Student.init(
   },
   {
     sequelize,
-    modelName: "students",
+    modelName: "Students",
   }
 );
 

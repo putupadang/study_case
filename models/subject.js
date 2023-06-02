@@ -9,7 +9,7 @@ Subject.init(
   },
   {
     sequelize,
-    modelName: "subjects",
+    modelName: "Subjects",
   }
 );
 
