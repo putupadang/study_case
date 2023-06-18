@@ -10,12 +10,6 @@ const sequelizeConnection = new Sequelize(dbName, dbUser, dbPassword, {
   host: dbHost,
   dialect: dbDriver,
   logging: false,
-  ssl: true,
-  dialectOptions: {
-    ssl: {
-      require: true,
-    },
-  },
 });
 
 export default sequelizeConnection;

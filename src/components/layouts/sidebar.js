@@ -1,10 +1,10 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import useToggleSidebar from "src/zustand/toggleSidebar";
 
 const Sidebar = () => {
   const route = useRouter();
-  const showSidebar = useSelector((state) => state.toggleSidebar.showSidebar);
+  const { showSidebar } = useToggleSidebar((state) => state);
 
   return (
     <>
