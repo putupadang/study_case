@@ -1,20 +1,18 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import useAuthToken from "src/zustand/authToken";
+import { useSession } from "next-auth/react";
 
 const Auth = ({ children }) => {
   const route = useRouter();
   const currentRoute = route.pathname;
-  const { token } = useAuthToken((state) => state);
+  const { data: session } = useSession();
 
   useEffect(() => {
-    let userToken = localStorage.getItem("token") || token;
-
-    if (userToken) {
+    if (session) {
       route.push("/");
       return;
     }
-  }, [currentRoute]);
+  }, [currentRoute, session]);
 
   return <div>{children}</div>;
 };

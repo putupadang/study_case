@@ -4,8 +4,9 @@ import { useRouter } from "next/router";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Auth from "../components/master/auth";
+import { SessionProvider } from "next-auth/react";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const route = useRouter();
   const currentRoute = route.pathname;
 
@@ -15,21 +16,24 @@ function MyApp({ Component, pageProps }) {
     if (authRoute.includes(currentRoute)) {
       return (
         <Auth>
-          <ToastContainer />
           <Component {...pageProps} />
         </Auth>
       );
     } else {
       return (
         <Dashboard>
-          <ToastContainer />
           <Component {...pageProps} />
         </Dashboard>
       );
     }
   };
 
-  return masterLayout();
+  return (
+    <SessionProvider session={session}>
+      <ToastContainer />
+      {masterLayout()}
+    </SessionProvider>
+  );
 }
 
 export default MyApp;

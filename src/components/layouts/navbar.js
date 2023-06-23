@@ -2,18 +2,17 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import useToggleSidebar from "src/zustand/toggleSidebar";
-import useAuthToken from "src/zustand/authToken";
+import { signOut } from "next-auth/react";
+import useUserProfile from "src/zustand/userProfile";
 
 const Navbar = () => {
   const route = useRouter();
   const [showProfile, setShowProfile] = useState(false);
   const { showSidebar, setShowSidebar } = useToggleSidebar((state) => state);
-  const { setToken, setUserData } = useAuthToken((state) => state);
+  const { userProfile } = useUserProfile((state) => state);
 
   const doLogout = () => {
-    localStorage.removeItem("token");
-    setToken(null);
-    setUserData(null);
+    signOut();
     route.push("/login");
   };
 
@@ -24,20 +23,21 @@ const Navbar = () => {
           <GiHamburgerMenu size={25} />
         </div>
         <div className="flex items-center space-x-2 mr-2">
-          <p>admin@email.com</p>
+          <p>{userProfile?.email}</p>
           <div className="relative">
             <div
               onClick={() => setShowProfile(!showProfile)}
               className="bg-slate-600 flex justify-center items-center w-7 h-7 rounded-full cursor-pointer"
             >
-              <p className="text-white">A</p>
+              <img className="w-7 h-7 rounded-full" src={userProfile?.image} alt={userProfile?.name} />
             </div>
             {showProfile && (
-              <div className="absolute right-2">
-                <div className="bg-white shadow-xl w-32 rounded-md py-1 px-2">
-                  <div className="mb-2 cursor-pointer hover:underline">
-                    <p>Settings</p>
+              <div className="absolute right-2 top-[100%]">
+                <div className="bg-white shadow-xl w-48 rounded-md py-1 px-2">
+                  <div className="mb-2">
+                    <p>hi, {userProfile?.name}</p>
                   </div>
+                  <hr className="mb-2" />
                   <div onClick={() => doLogout()} className="mb-2 cursor-pointer hover:underline">
                     <p>Logout</p>
                   </div>

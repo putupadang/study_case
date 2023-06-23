@@ -1,28 +1,12 @@
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Head from "next/head";
-import { toast } from "react-toastify";
-import useAuthToken from "src/zustand/authToken";
+import { signIn } from "next-auth/react";
 
 const Login = () => {
-  const route = useRouter();
-  const { setToken } = useAuthToken((state) => state);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [disabled, setDisabled] = useState(false);
-
-  const doLogin = () => {
-    let params = {
-      email: email,
-      password: password,
-    };
-
-    let token = "dasdada";
-    setToken(token);
-    localStorage.setItem("token", token);
-    route.push("/");
-  };
 
   return (
     <>
@@ -37,7 +21,8 @@ const Login = () => {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              doLogin();
+              setDisabled(true);
+              signIn();
             }}
             className="flex flex-col items-center w-full pb-3"
           >

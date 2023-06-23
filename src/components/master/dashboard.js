@@ -3,22 +3,24 @@ import Navbar from "../layouts/navbar";
 import Sidebar from "../layouts/sidebar";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import useAuthToken from "src/zustand/authToken";
+import { useSession } from "next-auth/react";
+import useUserProfile from "src/zustand/userProfile";
 
 const Dashboard = ({ children }) => {
   const route = useRouter();
   const currentRoute = route.pathname;
-  const { token } = useAuthToken((state) => state);
+  const { data: session } = useSession();
+  const { setUserProfile } = useUserProfile((state) => state);
 
   useEffect(() => {
-    let userToken = localStorage.getItem("token") || token;
-
-    if (!userToken) {
+    if (session !== undefined && session == null) {
       route.push("/login");
       toast.error("Please login first");
       return;
     }
-  }, [currentRoute]);
+
+    setUserProfile(session?.user);
+  }, [currentRoute, session]);
 
   return (
     <>
