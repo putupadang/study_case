@@ -12,6 +12,7 @@ export default function Home() {
 
       <div className="w-full">
         <p>home page content</p>
+        <button className="btn">Button</button>
       </div>
     </>
   );
